@@ -1,0 +1,4 @@
+sgol
+====
+
+Learning some Scala
