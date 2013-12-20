@@ -45,7 +45,7 @@ class GameSpec extends FunSpec with Matchers {
                                     (1,2) -> false, (2,2) -> true, (3,2) -> false, (4,2) -> true,
                                     (1,3) -> false, (2,3) -> true, (3,3) -> false, (4,3) -> true)
         val next_gen = game.evolve(current_gen)
-        next_gen should equal(expected_next_gen)
+        next_gen should be(expected_next_gen)
       }
 
     }
