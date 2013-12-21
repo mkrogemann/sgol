@@ -11,8 +11,7 @@ class Game(val width: Int, val height: Int) {
     (x-1 to x+1).map( col =>
       (y-1 to y+1).map( row =>
         {
-          val value = current_gen.get(wrap_or_get_key(col,row))
-          value match {
+          current_gen.get(wrap_or_get_key(col,row)) match {
             case Some(true) => num_alive += 1
             case _ =>
           }
