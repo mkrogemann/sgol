@@ -11,7 +11,5 @@ object GamePrinter {
       }
       println()
     }
-    Thread.sleep(100)
-    print(27.toChar + "[2J")
   }
 }
