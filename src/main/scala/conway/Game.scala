@@ -1,6 +1,18 @@
 package conway
 
+import scala.util.Random
+
 class Game(val width: Int, val height: Int) {
+
+  def randomize = {
+    var random_state = scala.collection.mutable.Map[(Int,Int), Boolean]()
+    for (x <- 1 to this.width) {
+      for (y <- 1 to this.height) {
+        random_state += (x,y) -> Random.nextBoolean()
+      }
+    }
+    random_state.toMap
+  }
 
   def evolve(current_gen: Map[(Int,Int), Boolean]): Map[(Int,Int), Boolean] = {
     current_gen map { case (k, v) => k -> Rules(neighbors(current_gen, k._1, k._2), alive = v) }
