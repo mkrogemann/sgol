@@ -5,38 +5,38 @@ import scala.util.Random
 class Game(val width: Int, val height: Int) {
 
   def randomize = {
-    var random_state = scala.collection.mutable.Map[(Int,Int), Boolean]()
+    var random_state = scala.collection.mutable.Map[(Int, Int), Boolean]()
     for (x <- 1 to this.width) {
       for (y <- 1 to this.height) {
-        random_state += (x,y) -> Random.nextBoolean()
+        random_state += (x, y) -> Random.nextBoolean()
       }
     }
     random_state.toMap
   }
 
-  def evolve(current_gen: Map[(Int,Int), Boolean]): Map[(Int,Int), Boolean] = {
+  def evolve(current_gen: Map[(Int, Int), Boolean]): Map[(Int, Int), Boolean] = {
     current_gen map { case (k, v) => k -> Rules(neighbors(current_gen, k._1, k._2), alive = v) }
   }
 
-  def neighbors(current_gen: Map[(Int,Int), Boolean], x: Int,y: Int): Int = {
+  def neighbors(current_gen: Map[(Int, Int), Boolean], x: Int, y: Int): Int = {
     var num_alive = 0
-    (x-1 to x+1).map( col =>
-      (y-1 to y+1).map( row =>
+    (x-1 to x+1) map { col =>
+      (y-1 to y+1) map { row =>
         {
-          current_gen.get(wrap_or_get_key(col,row)) match {
+          current_gen.get(wrap_or_get_key(col, row)) match {
             case Some(true) => num_alive += 1
             case _ =>
           }
         }
-      )
-    )
-    if (current_gen.get((x,y)) == Some(true)) { // don't count myself
+      }
+    }
+    if (current_gen.get((x, y)) == Some(true)) { // don't count myself
       num_alive -= 1
     }
     num_alive
   }
 
-  private def wrap_or_get_key(x: Int,y: Int): (Int,Int) = {
+  private def wrap_or_get_key(x: Int,y: Int): (Int, Int) = {
     val wrapped_x = if (x < 1) this.width else if (x > this.width) 1 else x
     val wrapped_y = if (y < 1) this.height else if (y > this.height) 1 else y
     (wrapped_x, wrapped_y)
