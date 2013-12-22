@@ -14,7 +14,7 @@ object Runner extends App {
     current_generation = game.evolve(current_generation)
     print(27.toChar + "[2J")
     GamePrinter(width, height, current_generation)
-    print(s"Generation #$gen")
+    println(s"Generation #$gen")
     Thread.sleep(100)
   }
 }
