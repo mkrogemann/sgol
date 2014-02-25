@@ -1,10 +1,7 @@
 package conway
 
 import org.scalatest.{FunSpec, Matchers}
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
 
-@RunWith(classOf[JUnitRunner])
 class RulesSpec extends FunSpec with Matchers {
 
   describe("Rules") {
