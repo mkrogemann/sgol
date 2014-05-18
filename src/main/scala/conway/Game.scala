@@ -20,19 +20,15 @@ class Game(val width: Int, val height: Int) {
 
   def neighbors(current_gen: Map[(Int, Int), Boolean], x: Int, y: Int): Int = {
     var num_alive = 0
-    (x-1 to x+1) map { col =>
-      (y-1 to y+1) map { row =>
-        {
-          current_gen.get(wrapOrGet(col, row)) match {
-            case Some(true) => num_alive += 1
-            case _ =>
-          }
-        }
+    List(
+      (x - 1, y - 1), (x, y - 1), (x + 1, y - 1),
+      (x - 1, y), (x + 1, y),
+      (x - 1, y + 1), (x, y + 1), (x + 1, y + 1)).foreach( t => {
+      current_gen.get(wrapOrGet(t._1, t._2)) match {
+        case Some(true) => num_alive += 1
+        case _ =>
       }
-    }
-    if (current_gen.get((x, y)) == Some(true)) { // don't count myself
-      num_alive -= 1
-    }
+    })
     num_alive
   }
 
