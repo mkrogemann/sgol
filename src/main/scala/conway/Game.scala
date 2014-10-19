@@ -19,10 +19,7 @@ class Game(val width: Int, val height: Int) {
   }
 
   def neighbors(current_gen: Map[(Int, Int), Boolean], x: Int, y: Int): Int = {
-    def alive(x: Int, y: Int): Boolean = current_gen.get(wrapOrGet(x, y)) match {
-      case Some(true) => true
-      case _ => false
-    }
+    def alive(x: Int, y: Int): Boolean = current_gen.get(wrapOrGet(x, y)) exists (v => v)
     List(
       (x - 1, y - 1), (x, y - 1), (x + 1, y - 1),
       (x - 1, y), (x + 1, y),
@@ -34,5 +31,4 @@ class Game(val width: Int, val height: Int) {
     val wrapped_y = if (y < 1) this.height else if (y > this.height) 1 else y
     (wrapped_x, wrapped_y)
   }
-
 }
