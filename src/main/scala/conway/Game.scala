@@ -26,7 +26,7 @@ class Game(val width: Int, val height: Int) {
             (x - 1, y + 1), (x, y + 1), (x + 1, y + 1)).count(t => alive(t._1, t._2))
     }
 
-    private def wrapOrGet(x: Int, y: Int): (Int, Int) = Tuple2(
+    private def wrapOrGet(x: Int, y: Int): (Int, Int) = (
         if (x < 1) this.width else if (x > this.width) 1 else x,
         if (y < 1) this.height else if (y > this.height) 1 else y
     )
