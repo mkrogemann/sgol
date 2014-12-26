@@ -1,5 +1,6 @@
 package conway
 
+import scala.collection.parallel.immutable.ParMap
 import scala.util.Random
 
 object Runner extends App {
@@ -20,13 +21,13 @@ object Runner extends App {
         Thread.sleep(100)
     }
 
-    private def randomize: Map[(Int, Int), Boolean] = {
+    private def randomize: ParMap[(Int, Int), Boolean] = {
         var random_state = scala.collection.mutable.Map[(Int, Int), Boolean]()
         for (x <- 1 to this.width) {
             for (y <- 1 to this.height) {
                 random_state += (x, y) -> Random.nextBoolean()
             }
         }
-        random_state.toMap
+        random_state.toMap.par
     }
 }

@@ -2,6 +2,8 @@ package conway
 
 import org.scalatest.{Matchers, GivenWhenThen, FeatureSpec}
 
+import scala.collection.parallel.immutable.ParMap
+
 class SpaceshipsSpec extends FeatureSpec with GivenWhenThen with Matchers {
 
   info("As a user of ScalaGol")
@@ -23,7 +25,7 @@ class SpaceshipsSpec extends FeatureSpec with GivenWhenThen with Matchers {
       */
 
       val game = new Game(6, 6)
-      val initial_state = Map(
+      val initial_state = ParMap(
         (1,1) -> false, (2,1) -> false, (3,1) -> false, (4,1) -> true,  (5,1) -> false, (6,1) -> false,
         (1,2) -> false, (2,2) -> true,  (3,2) -> false, (4,2) -> true,  (5,2) -> false, (6,2) -> false,
         (1,3) -> false, (2,3) -> false, (3,3) -> true,  (4,3) -> true,  (5,3) -> false, (6,3) -> false,

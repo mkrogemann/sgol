@@ -2,6 +2,8 @@ package conway
 
 import org.scalatest.{Matchers, FunSpec}
 
+import scala.collection.parallel.immutable.ParMap
+
 class GameSpec extends FunSpec with Matchers {
 
   describe ("Game") {
@@ -19,7 +21,7 @@ class GameSpec extends FunSpec with Matchers {
     describe ("neighbors") {
 
       it ("returns the number of living neighbors") {
-        val current_gen = Map((1,1) -> true, (2,1) -> false, (3,1) -> true, (4,1) -> false,
+        val current_gen = ParMap((1,1) -> true, (2,1) -> false, (3,1) -> true, (4,1) -> false,
                               (1,2) -> false, (2,2) -> true, (3,2) -> false, (4,2) -> true,
                               (1,3) -> false, (2,3) -> true, (3,3) -> false, (4,3) -> true)
         val game = new Game(4,3)
@@ -34,7 +36,7 @@ class GameSpec extends FunSpec with Matchers {
     describe ("evolve") {
 
       it ("evolves the game") {
-        val current_gen = Map((1,1) -> true, (2,1) -> false, (3,1) -> true, (4,1) -> false,
+        val current_gen = ParMap((1,1) -> true, (2,1) -> false, (3,1) -> true, (4,1) -> false,
                               (1,2) -> false, (2,2) -> true, (3,2) -> false, (4,2) -> true,
                               (1,3) -> false, (2,3) -> true, (3,3) -> false, (4,3) -> true)
         val game = new Game(4,3)
