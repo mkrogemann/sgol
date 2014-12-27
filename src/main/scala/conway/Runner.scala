@@ -1,8 +1,5 @@
 package conway
 
-import scala.collection.parallel.immutable.ParMap
-import scala.util.Random
-
 object Runner extends App {
 
     val width = 170
@@ -10,7 +7,7 @@ object Runner extends App {
     val generations = 5000
     val game = new Game(width, height)
 
-    var current_generation = randomize
+    var current_generation = randomize(width, height)
     GamePrinter(width, height, current_generation)
 
     for (gen <- 1 to generations) {
@@ -19,15 +16,5 @@ object Runner extends App {
         GamePrinter(width, height, current_generation)
         println(s"Generation #$gen")
         Thread.sleep(100)
-    }
-
-    private def randomize: ParMap[(Int, Int), Boolean] = {
-        var random_state = scala.collection.mutable.Map[(Int, Int), Boolean]()
-        for (x <- 1 to this.width) {
-            for (y <- 1 to this.height) {
-                random_state += (x, y) -> Random.nextBoolean()
-            }
-        }
-        random_state.toMap.par
     }
 }
